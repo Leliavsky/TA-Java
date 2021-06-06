@@ -12,7 +12,7 @@ public class AddToCartTest extends BaseTest{
     public void checkAddToCart() {
         getHomePage().clickOnProductCatalogButton();//каталог товаров
         getHomePage().clickOnSmartHomeButton();//Умный Дом
-        getSmartPage().clickScrollDownButton();// листаем скролл вниз
+        getSmartPage().moveToElement(getSmartPage().getScrollDown());// листаем скролл вниз
         getSmartPage().clickOnSmartKitchenButton();// Выбираем Smart-кухня
         getSmartPage().implicitWait(30);//wait for page loading
         getSmartPage().clickAddToCart();//add to cart Смарт Чашку

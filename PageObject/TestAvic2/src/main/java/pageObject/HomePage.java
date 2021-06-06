@@ -2,33 +2,53 @@ package pageObject;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-
-import static org.openqa.selenium.By.xpath;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage {
 
-    private static final String SEARCH_INPUT = "//input[@id='input_search']";
-    private static final String PRODUCT_CATALOG_BUTTON = "//span[@class='sidebar-item']";
-    private static final String SMART_HOME_BUTTON = "//li[contains(@class,'sidebar-item')]//a[contains(@href, 'ua/umnyij-dom')]";
-    private static final String AMOUNT_OF_PRODUCTS_IN_CART = "//div[contains(@class,'header-bottom__cart')]//div[contains(@class,'cart_count')]";
+    @FindBy(xpath = "//input[@id='input_search']")
+    private WebElement searchInput;
+
+    @FindBy(xpath = "//span[@class='sidebar-item']")
+    private WebElement productCatalogButton;
+
+    @FindBy(xpath = "//li[contains(@class,'sidebar-item')]//a[contains(@href, 'ua/umnyij-dom')]")
+    private WebElement smartHomeButton;
+
+    @FindBy(xpath = "//div[contains(@class,'header-bottom__cart')]//div[contains(@class,'cart_count')]")
+    private WebElement amountOfProduct;
+
+    @FindBy(xpath = "//img[@class=\"sidebar-item-image lazyloaded\"]")
+    private WebElement moveToAppleStore;
+
+    @FindBy(xpath = ".//a[@href=\"https://avic.ua/macbook\"][@class=\"sidebar-item\"]")
+    private WebElement macBookButton;
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     public void searchByKeyword(final String keyword) {
-        driver.findElement(xpath(SEARCH_INPUT)).sendKeys(keyword, Keys.ENTER);
+        searchInput.sendKeys(keyword, Keys.ENTER);
     }
 
     public void clickOnProductCatalogButton() {
-        driver.findElement(xpath(PRODUCT_CATALOG_BUTTON)).click();
+        productCatalogButton.click();
     }
 
     public void clickOnSmartHomeButton() {
-        driver.findElement(xpath(SMART_HOME_BUTTON)).click();
+        smartHomeButton.click();
     }
 
     public String getTextOfAmountProductsInCart() {
-        return driver.findElement(xpath(AMOUNT_OF_PRODUCTS_IN_CART)).getText();
+        return amountOfProduct.getText();
+    }
+
+    public WebElement setMoveToAppleStore(){
+        return moveToAppleStore;
+    }
+    public void clickOnMacBookButton() {
+        macBookButton.click();
     }
 }

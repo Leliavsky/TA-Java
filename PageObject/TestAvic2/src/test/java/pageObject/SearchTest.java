@@ -10,6 +10,7 @@ public class SearchTest extends BaseTest {
     private String SEARCH_KEYWORD = "Samsung";
     private String SEARCH_KEYWORD1 = "AirPods";
 
+    private static final String EXPECTED_TEXT_SILVER_MACBOOK = "Ноутбук Apple MacBook Air 13 Silver Late 2020 (MGN93)";
     private String EXPECTED_SEARCH_QUERY = "query=Samsung";
 
     @Test(priority = 1)
@@ -30,5 +31,15 @@ public class SearchTest extends BaseTest {
         for (WebElement webElement : getSearchResult().getSearchResultsList()) { //прошлись циклом и проверили что каждый элемент листа содержит текс Samsung
             assertTrue(webElement.getText().contains(SEARCH_KEYWORD));
         }
+    }
+
+    @Test(priority = 4)
+    public void checkCoolerOfMacBookIsWork(){
+        getHomePage().clickOnProductCatalogButton();//каталог товаров
+        getHomePage().moveToElement(getHomePage().setMoveToAppleStore());//наводим курсор на Apple Store
+        getAppleStore().clickOnMacBookButton();//кликаем на Макбук
+        getMacBookPage().clickMacBookFirst();//выбираем Макбук первый
+        getMacBookPage().clickMacBookSilver();//выбираем сильвер
+        assertEquals(getMacBookPage().getTextOfMacBook(), EXPECTED_TEXT_SILVER_MACBOOK);
     }
 }

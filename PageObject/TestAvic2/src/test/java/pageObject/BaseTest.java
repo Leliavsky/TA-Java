@@ -47,4 +47,10 @@ public class BaseTest {
         return new SearchResult(getDriver());
     }
 
+    public AppleStorePage getAppleStore() {
+        return new AppleStorePage(getDriver());
+    }
+    public MacBookPage getMacBookPage() {
+        return new MacBookPage(getDriver());
+    }
 }

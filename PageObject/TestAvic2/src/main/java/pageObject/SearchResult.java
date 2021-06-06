@@ -2,21 +2,21 @@ package pageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static org.openqa.selenium.By.xpath;
-
 public class SearchResult extends BasePage {
 
-    private static final String SEARCH_PRODUCT_RESULT_LIST = "//div[@class='prod-cart__descr']";
+    @FindBy(xpath = "//div[@class='prod-cart__descr']")
+    private List<WebElement> searchProductResultList;
 
     public SearchResult(WebDriver driver) {
         super(driver);
     }
 
     public List<WebElement> getSearchResultsList() {
-        return driver.findElements(xpath(SEARCH_PRODUCT_RESULT_LIST));
+        return searchProductResultList;
     }
 
     public int getSearchResultInt(){
